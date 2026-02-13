@@ -29,22 +29,38 @@ const SolbergInterface: React.FC<SolbergInterfaceProps> = ({ isOpen, onClose, cu
   const [input, setInput] = useState('');
   const [mode, setMode] = useState<ChatMode>('INTELLIGENCE');
   const [isTyping, setIsTyping] = useState(false);
+  const [apiKeyError, setApiKeyError] = useState(false);
   const chatRef = useRef<any>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen && !chatRef.current) {
-      chatRef.current = createSolbergChat();
-      const intro = currentPage === 'dashboard' 
-        ? "I am the Solberg Interface. We are currently observing significant structural stress in global liquidity. How shall we interpret these specific signals?"
-        : "Welcome to the Archive. I am the Solberg Interface, representing Professor Amina Solberg's worldview. Shall we discuss the systemic philosophy behind Sentinel Alpha?";
-      
-      setMessages([
-        { 
-          role: 'model', 
-          text: intro
+      try {
+        chatRef.current = createSolbergChat();
+        setApiKeyError(false);
+        const intro = currentPage === 'dashboard' 
+          ? "I am the Solberg Interface. We are currently observing significant structural stress in global liquidity. How shall we interpret these specific signals?"
+          : "Welcome to the Archive. I am the Solberg Interface, representing Professor Amina Solberg's worldview. Shall we discuss the systemic philosophy behind Sentinel Alpha?";
+        
+        setMessages([
+          { 
+            role: 'model', 
+            text: intro
+          }
+        ]);
+      } catch (error: any) {
+        if (error.message === 'GOOGLE_API_KEY_REQUIRED') {
+          setApiKeyError(true);
+          setMessages([
+            {
+              role: 'model',
+              text: ''
+            }
+          ]);
+        } else {
+          throw error;
         }
-      ]);
+      }
     }
   }, [isOpen, currentPage]);
 
@@ -56,6 +72,14 @@ const SolbergInterface: React.FC<SolbergInterfaceProps> = ({ isOpen, onClose, cu
 
   const handleSendMessage = async (userMsg: string) => {
     if (!userMsg.trim() || isTyping) return;
+
+    if (apiKeyError || !chatRef.current) {
+      setMessages(prev => [...prev, { 
+        role: 'model', 
+        text: "Google API key is required to use this feature. Please set your GEMINI_API_KEY in .env.local" 
+      }]);
+      return;
+    }
 
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setIsTyping(true);
@@ -79,9 +103,14 @@ const SolbergInterface: React.FC<SolbergInterfaceProps> = ({ isOpen, onClose, cu
           return newMsgs;
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Chat error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: "Connectivity failure. Please re-establish session." }]);
+      if (error.message === 'GOOGLE_API_KEY_REQUIRED') {
+        setApiKeyError(true);
+        setMessages(prev => [...prev, { role: 'model', text: "Google API key is required to use this feature. Please set your GEMINI_API_KEY in .env.local" }]);
+      } else {
+        setMessages(prev => [...prev, { role: 'model', text: "Connectivity failure. Please re-establish session." }]);
+      }
     } finally {
       setIsTyping(false);
     }
@@ -140,6 +169,24 @@ const SolbergInterface: React.FC<SolbergInterfaceProps> = ({ isOpen, onClose, cu
 
         {/* Chat Area */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-8 scroll-smooth">
+          {apiKeyError && (
+            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-6 mb-6">
+              <div className="flex items-start gap-3">
+                <svg className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <div className="flex-1">
+                  <h3 className="text-sm font-bold text-amber-900 mb-2">Google API Key Required</h3>
+                  <p className="text-xs text-amber-800 mb-2">
+                    The Solberg Interface requires a Google Gemini API key to function.
+                  </p>
+                  <p className="text-xs text-amber-700">
+                    Please set your <code className="bg-amber-100 px-1.5 py-0.5 rounded font-mono">GEMINI_API_KEY</code> in <code className="bg-amber-100 px-1.5 py-0.5 rounded font-mono">.env.local</code> and restart the application.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
           {messages.map((msg, i) => (
             <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-[85%] space-y-2 ${msg.role === 'user' ? 'text-right' : ''}`}>

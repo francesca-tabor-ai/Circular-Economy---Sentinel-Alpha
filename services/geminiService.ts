@@ -2,7 +2,13 @@
 import { GoogleGenAI, Type, Chat } from "@google/genai";
 import { Insight } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+const API_KEY = process.env.API_KEY || process.env.GEMINI_API_KEY || '';
+
+const hasApiKey = () => {
+  return API_KEY && API_KEY.trim() !== '' && API_KEY !== 'your_api_key_here';
+};
+
+const ai = hasApiKey() ? new GoogleGenAI({ apiKey: API_KEY }) : null;
 
 const SOLBERG_SYSTEM_INSTRUCTION = `
 You are the SOLBERG INTERFACE, an AI representing the voice and worldview of Professor Amina Solberg, Founder of Sentinel Alpha and Civilisation Systems Scholar.
@@ -33,30 +39,34 @@ CONSTRAINTS:
 `;
 
 export async function getSystemicInsights(marketContext: string): Promise<Insight[]> {
-  const response = await ai.models.generateContent({
-    model: 'gemini-3-flash-preview',
-    contents: `Analyze the following market context and provide exactly 3 "Elite Systemic Insights" that 'Smart Money' is missing. 
-    Focus on hidden fragility, tail risks, and non-obvious correlations.
-    
-    Context: ${marketContext}`,
-    config: {
-      responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.ARRAY,
-        items: {
-          type: Type.OBJECT,
-          properties: {
-            title: { type: Type.STRING },
-            content: { type: Type.STRING },
-            confidence: { type: Type.NUMBER }
-          },
-          required: ["title", "content", "confidence"]
-        }
-      }
-    }
-  });
+  if (!hasApiKey() || !ai) {
+    throw new Error('GOOGLE_API_KEY_REQUIRED');
+  }
 
   try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: `Analyze the following market context and provide exactly 3 "Elite Systemic Insights" that 'Smart Money' is missing. 
+      Focus on hidden fragility, tail risks, and non-obvious correlations.
+      
+      Context: ${marketContext}`,
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: Type.ARRAY,
+          items: {
+            type: Type.OBJECT,
+            properties: {
+              title: { type: Type.STRING },
+              content: { type: Type.STRING },
+              confidence: { type: Type.NUMBER }
+            },
+            required: ["title", "content", "confidence"]
+          }
+        }
+      }
+    });
+
     return JSON.parse(response.text || "[]");
   } catch (e) {
     console.error("Failed to parse Gemini response", e);
@@ -65,6 +75,10 @@ export async function getSystemicInsights(marketContext: string): Promise<Insigh
 }
 
 export function createSolbergChat(): Chat {
+  if (!hasApiKey() || !ai) {
+    throw new Error('GOOGLE_API_KEY_REQUIRED');
+  }
+
   return ai.chats.create({
     model: 'gemini-3-flash-preview',
     config: {

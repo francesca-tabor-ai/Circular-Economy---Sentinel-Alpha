@@ -34,14 +34,27 @@ const App: React.FC = () => {
   const [isSolbergOpen, setIsSolbergOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [insights, setInsights] = useState<Insight[]>([]);
+  const [apiKeyError, setApiKeyError] = useState(false);
   const [marketContext] = useState("Yield curve inversion deepening, Repo spreads widening, Crude Oil volatility spikes, Liquidity thinning in corporate bond markets.");
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const res = await getSystemicInsights(marketContext);
-      setInsights(res);
-      setLoading(false);
+      setApiKeyError(false);
+      try {
+        const res = await getSystemicInsights(marketContext);
+        setInsights(res);
+      } catch (error: any) {
+        if (error.message === 'GOOGLE_API_KEY_REQUIRED') {
+          setApiKeyError(true);
+          setInsights([]);
+        } else {
+          console.error('Error fetching insights:', error);
+          setInsights([]);
+        }
+      } finally {
+        setLoading(false);
+      }
     };
     fetchData();
   }, [marketContext]);
@@ -167,29 +180,50 @@ const App: React.FC = () => {
             </div>
             
             <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-12">
-              {insights.map((insight, idx) => (
-                <div key={idx} className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center text-[10px] font-bold mono">
-                      0{idx + 1}
-                    </span>
-                    <div className="h-px flex-1 bg-slate-100" />
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                      {(insight.confidence * 100).toFixed(0)}% Confidence
-                    </span>
+              {apiKeyError ? (
+                <div className="col-span-3 py-12 text-center">
+                  <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-8 max-w-2xl mx-auto">
+                    <div className="flex items-center justify-center gap-3 mb-4">
+                      <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                      <h3 className="text-lg font-bold text-amber-900">Google API Key Required</h3>
+                    </div>
+                    <p className="text-sm text-amber-800 mb-4">
+                      This feature requires a Google Gemini API key to generate systemic risk insights.
+                    </p>
+                    <p className="text-xs text-amber-700">
+                      Please set your <code className="bg-amber-100 px-2 py-1 rounded">GEMINI_API_KEY</code> in <code className="bg-amber-100 px-2 py-1 rounded">.env.local</code> to enable this feature.
+                    </p>
                   </div>
-                  <h4 className="text-base font-bold text-slate-900 leading-snug">
-                    {insight.title}
-                  </h4>
-                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                    {insight.content}
-                  </p>
                 </div>
-              ))}
-              {!loading && insights.length === 0 && (
-                <div className="col-span-3 py-12 text-center text-slate-400 text-sm font-medium">
-                  Scanning global venues for stress anomalies...
-                </div>
+              ) : (
+                <>
+                  {insights.map((insight, idx) => (
+                    <div key={idx} className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center text-[10px] font-bold mono">
+                          0{idx + 1}
+                        </span>
+                        <div className="h-px flex-1 bg-slate-100" />
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                          {(insight.confidence * 100).toFixed(0)}% Confidence
+                        </span>
+                      </div>
+                      <h4 className="text-base font-bold text-slate-900 leading-snug">
+                        {insight.title}
+                      </h4>
+                      <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                        {insight.content}
+                      </p>
+                    </div>
+                  ))}
+                  {!loading && insights.length === 0 && !apiKeyError && (
+                    <div className="col-span-3 py-12 text-center text-slate-400 text-sm font-medium">
+                      Scanning global venues for stress anomalies...
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </section>
