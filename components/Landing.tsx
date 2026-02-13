@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface LandingProps {
   onNavigateToDashboard: () => void;
@@ -6,15 +6,21 @@ interface LandingProps {
 
 const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
   const FOUNDER_IMAGE = "https://i.postimg.cc/tYWgbdnb/8-Scorpio-Sentinel-Alpha.png";
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header with Dashboard Button */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e5e7eb]">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-end">
           <button
             onClick={onNavigateToDashboard}
-            className="px-6 py-2.5 bg-slate-900 text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-colors"
+            className="px-6 py-2.5 bg-[#0a0a0a] text-white text-sm font-semibold rounded-ui hover:bg-[#1a1a1a] motion-subtle"
           >
             Dashboard
           </button>
@@ -22,55 +28,84 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
       </header>
 
       {/* HERO SECTION */}
-      <section className="max-w-5xl mx-auto px-6 py-20 md:py-32 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 tracking-tight">
-          See Systemic Risk Before Markets Price It
-        </h1>
-        <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-3xl mx-auto leading-relaxed">
-          Sentinel Alpha delivers proprietary early-warning intelligence for systemic financial stress — interpreted through the civilisation-systems thinking of founder Professor Amina Solberg.
-        </p>
-        <p className="text-lg text-slate-500 mb-12 max-w-2xl mx-auto">
-          Built for the institutions that cannot afford to be late to structural change.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button className="px-8 py-4 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors">
-            Request Private Access
-          </button>
-          <button className="px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg border-2 border-slate-900 hover:bg-slate-50 transition-colors">
-            Learn How The System Works
-          </button>
+      <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+        {/* Background Image with lazy loading */}
+        <div 
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            backgroundImage: 'url(https://tripxl.com/blog/wp-content/uploads/2025/02/Best-Time-To-Visit-49.jpg)'
+          }}
+        >
+          {/* Preload image */}
+          <img 
+            src="https://tripxl.com/blog/wp-content/uploads/2025/02/Best-Time-To-Visit-49.jpg"
+            alt=""
+            className="hidden"
+            onLoad={() => setImageLoaded(true)}
+            loading="eager"
+          />
+        </div>
+        
+        {/* Loading placeholder */}
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-[#1a1a1a] animate-pulse" />
+        )}
+        
+        {/* Dark Overlay */}
+        <div className={`absolute inset-0 bg-[#0a0a0a]/70 transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}></div>
+        
+        {/* Content */}
+        <div className={`relative z-10 max-w-5xl mx-auto px-6 py-24 md:py-40 transform transition-all duration-700 ${imageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1] hover:scale-105 transition-transform duration-300">
+            See Systemic Risk Before Markets Price It
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 mb-6 max-w-3xl mx-auto leading-relaxed font-normal">
+            Sentinel Alpha delivers proprietary early-warning intelligence for systemic financial stress — interpreted through the civilisation-systems thinking of founder Professor Amina Solberg.
+          </p>
+          <p className="text-lg text-white/80 mb-16 max-w-2xl mx-auto leading-relaxed">
+            Built for the institutions that cannot afford to be late to structural change.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="px-8 py-4 bg-white text-[#0a0a0a] font-semibold rounded-ui hover:bg-[#f9fafb] motion-subtle hover:scale-105 active:scale-95 transition-all duration-200 hover:shadow-lg relative overflow-hidden group">
+              <span className="relative z-10">Request Private Access</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            </button>
+            <button className="px-8 py-4 bg-transparent text-white font-semibold rounded-ui border-2 border-white/80 hover:bg-white/10 hover:border-white motion-subtle hover:scale-105 active:scale-95 transition-all duration-200 hover:shadow-lg">
+              Learn How The System Works
+            </button>
+          </div>
         </div>
       </section>
 
       {/* TRUST STRIP */}
-      <section className="bg-slate-50 border-y border-slate-200 py-8">
+      <section className="bg-[#f9fafb] border-y border-[#e5e7eb] py-10">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-sm text-slate-600 font-medium">
+          <p className="text-sm text-[#4b5563] font-medium leading-relaxed">
             Trusted by leaders across capital markets, global systems research, and strategic risk intelligence.
           </p>
-          <p className="text-xs text-slate-500 mt-2 font-semibold uppercase tracking-widest">
+          <p className="text-xs text-[#6b7280] mt-3 font-semibold uppercase tracking-widest">
             Private. Limited. Invitation-first.
           </p>
         </div>
       </section>
 
       {/* THE PROBLEM SECTION */}
-      <section className="max-w-5xl mx-auto px-6 py-20 md:py-32">
+      <section className="max-w-5xl mx-auto px-6 py-24 md:py-40">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-6 leading-tight">
             Markets Do Not Fail Suddenly
           </h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-slate-700 mb-8">
+          <h3 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-8 leading-tight">
             They Fail Gradually — Then All At Once.
           </h3>
-          <p className="text-xl text-slate-600 mb-6 max-w-3xl mx-auto">
+          <p className="text-xl text-[#4b5563] mb-8 max-w-3xl mx-auto leading-relaxed">
             By the time volatility spikes, spreads widen, and liquidity disappears, the system has already changed.
           </p>
-          <div className="inline-block px-6 py-3 bg-slate-100 rounded-lg">
-            <p className="text-lg font-semibold text-slate-900">
+          <div className="inline-block px-8 py-5 bg-[#f3f4f6] rounded-ui-lg">
+            <p className="text-lg font-semibold text-[#0a0a0a]">
               Most market tools measure outcomes.
             </p>
-            <p className="text-lg font-semibold text-slate-900 mt-2">
+            <p className="text-lg font-semibold text-[#0a0a0a] mt-2">
               Sentinel Alpha measures structural fragility formation.
             </p>
           </div>
@@ -78,35 +113,35 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
       </section>
 
       {/* THE SOLUTION SECTION */}
-      <section className="bg-slate-50 py-20 md:py-32">
+      <section className="bg-[#f9fafb] py-24 md:py-40">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-8 leading-tight">
               Early Detection of Systemic Fragility
             </h2>
-            <p className="text-xl text-slate-600 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-[#4b5563] mb-12 max-w-3xl mx-auto leading-relaxed">
               Sentinel Alpha continuously analyses structural stress signals across:
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white p-8 rounded-2xl border border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Market microstructure</h3>
+          <div className="grid md:grid-cols-2 gap-6 mb-16">
+            <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow">
+              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Market microstructure</h3>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Funding and liquidity networks</h3>
+            <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow">
+              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Funding and liquidity networks</h3>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Counterparty system stability</h3>
+            <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow">
+              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Counterparty system stability</h3>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Real-economy and infrastructure dependency stress</h3>
+            <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow">
+              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Real-economy and infrastructure dependency stress</h3>
             </div>
           </div>
           <div className="text-center">
-            <p className="text-xl font-semibold text-slate-900 mb-2">
+            <p className="text-xl font-semibold text-[#0a0a0a] mb-3 leading-relaxed">
               Then translates those signals into clear, decision-ready intelligence.
             </p>
-            <p className="text-lg text-slate-600">
+            <p className="text-lg text-[#4b5563] leading-relaxed">
               Not more data.<br />
               Earlier understanding.
             </p>
@@ -115,105 +150,110 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
       </section>
 
       {/* THE INTELLIGENCE LAYER SECTION */}
-      <section className="max-w-5xl mx-auto px-6 py-20 md:py-32">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">
+      <section className="max-w-5xl mx-auto px-6 py-24 md:py-40">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-8 leading-tight">
             What You Receive
           </h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200">
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">Systemic Fragility Early Warning</h3>
-            <p className="text-slate-600">
-              Probability-weighted detection of systemic instability formation.
-            </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#f9fafb] p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow hover:border-[#3b82f6] hover:transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#3b82f6] transition-colors duration-300">Systemic Fragility Early Warning</h3>
+              <p className="text-[#4b5563] leading-relaxed">
+                Probability-weighted detection of systemic instability formation.
+              </p>
+            </div>
+            <div className="bg-[#f9fafb] p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow hover:border-[#10b981] hover:transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#10b981] transition-colors duration-300">Hidden Correlation Drift Detection</h3>
+              <p className="text-[#4b5563] leading-relaxed">
+                Identify where diversification is quietly breaking.
+              </p>
+            </div>
+            <div className="bg-[#f9fafb] p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow hover:border-[#06b6d4] hover:transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#06b6d4] transition-colors duration-300">Liquidity Collapse Radar</h3>
+              <p className="text-[#4b5563] leading-relaxed">
+                See market depth fragility before exit doors narrow.
+              </p>
+            </div>
+            <div className="bg-[#f9fafb] p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow hover:border-[#6366f1] hover:transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#6366f1] transition-colors duration-300">Event Cascade Simulation</h3>
+              <p className="text-[#4b5563] leading-relaxed">
+                Understand what breaks next — and how fast.
+              </p>
+            </div>
           </div>
-          <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200">
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">Hidden Correlation Drift Detection</h3>
-            <p className="text-slate-600">
-              Identify where diversification is quietly breaking.
-            </p>
-          </div>
-          <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200">
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">Liquidity Collapse Radar</h3>
-            <p className="text-slate-600">
-              See market depth fragility before exit doors narrow.
-            </p>
-          </div>
-          <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200">
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">Event Cascade Simulation</h3>
-            <p className="text-slate-600">
-              Understand what breaks next — and how fast.
-            </p>
-          </div>
-        </div>
       </section>
 
       {/* THE SOLBERG INTERFACE SECTION */}
-      <section className="bg-slate-50 py-20 md:py-32">
+      <section className="bg-[#f9fafb] py-24 md:py-40">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-6 leading-tight">
               Intelligence Explained, Not Just Delivered
             </h2>
-            <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-[#4b5563] mb-10 max-w-3xl mx-auto leading-relaxed">
               All intelligence is accessible through the Sentinel conversational interface, shaped by the systems philosophy of founder:
             </p>
             <div className="flex flex-col items-center gap-4 mb-12">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-slate-900">
-                <img src={FOUNDER_IMAGE} alt="Professor Amina Solberg" className="w-full h-full object-cover" />
+              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#0a0a0a] hover:scale-110 hover:border-[#3b82f6] transition-all duration-300 cursor-pointer group">
+                <img 
+                  src={FOUNDER_IMAGE} 
+                  alt="Professor Amina Solberg" 
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  loading="lazy"
+                />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-slate-900">Professor Amina Solberg</h3>
-                <p className="text-lg text-slate-600">Civilisation Systems Scholar</p>
+                <h3 className="text-2xl font-bold text-[#0a0a0a]">Professor Amina Solberg</h3>
+                <p className="text-lg text-[#4b5563]">Civilisation Systems Scholar</p>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 max-w-3xl mx-auto mb-12">
-              <p className="text-lg font-semibold text-slate-900 leading-relaxed">
+            <div className="bg-white p-10 rounded-ui-xl border border-[#e5e7eb] max-w-3xl mx-auto mb-16 card-shadow">
+              <p className="text-lg font-semibold text-[#0a0a0a] leading-relaxed">
                 Professor Solberg's work focuses on one core principle:
               </p>
-              <p className="text-xl font-bold text-slate-900 mt-4 leading-relaxed">
+              <p className="text-xl font-bold text-[#0a0a0a] mt-4 leading-relaxed">
                 Civilisations fail when they optimise for extraction.<br />
                 They endure when they learn to circulate value intelligently.
               </p>
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-slate-200">
-              <h4 className="font-bold text-slate-900 mb-2">Interpret systemic signals in real-world terms</h4>
+            <div className="bg-white p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
+              <h4 className="font-bold text-[#0a0a0a] mb-2">Interpret systemic signals in real-world terms</h4>
             </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200">
-              <h4 className="font-bold text-slate-900 mb-2">Understand second and third order effects</h4>
+            <div className="bg-white p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
+              <h4 className="font-bold text-[#0a0a0a] mb-2">Understand second and third order effects</h4>
             </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200">
-              <h4 className="font-bold text-slate-900 mb-2">Connect market behaviour to structural global shifts</h4>
+            <div className="bg-white p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
+              <h4 className="font-bold text-[#0a0a0a] mb-2">Connect market behaviour to structural global shifts</h4>
             </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200">
-              <h4 className="font-bold text-slate-900 mb-2">Maintain strategic clarity during volatility</h4>
+            <div className="bg-white p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
+              <h4 className="font-bold text-[#0a0a0a] mb-2">Maintain strategic clarity during volatility</h4>
             </div>
           </div>
         </div>
       </section>
 
       {/* FOUNDER PHILOSOPHY SECTION */}
-      <section className="max-w-5xl mx-auto px-6 py-20 md:py-32">
+      <section className="max-w-5xl mx-auto px-6 py-24 md:py-40">
         <div className="text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-8 leading-tight">
             Why Sentinel Alpha Exists
           </h2>
-          <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-[#4b5563] mb-8 max-w-3xl mx-auto leading-relaxed">
             During recent global system disruptions, one pattern became clear:
           </p>
-          <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 max-w-3xl mx-auto mb-8">
-            <p className="text-xl font-semibold text-slate-900 leading-relaxed">
+          <div className="bg-[#f9fafb] p-10 rounded-ui-xl border border-[#e5e7eb] max-w-3xl mx-auto mb-8 card-shadow">
+            <p className="text-xl font-semibold text-[#0a0a0a] leading-relaxed">
               The most advanced societies were not those producing the most.<br />
               They were those preserving and circulating value most intelligently.
             </p>
           </div>
-          <p className="text-lg text-slate-600 mb-4">
+          <p className="text-lg text-[#4b5563] mb-4 leading-relaxed">
             Sentinel Alpha was built on that insight.
           </p>
-          <p className="text-xl font-bold text-slate-900">
+          <p className="text-xl font-bold text-[#0a0a0a] leading-relaxed">
             The circular economy is not a sustainability movement.<br />
             It is the next phase of civilisation learning.
           </p>
@@ -221,105 +261,105 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
       </section>
 
       {/* WHO THIS IS FOR SECTION */}
-      <section className="bg-slate-50 py-20 md:py-32">
+      <section className="bg-[#f9fafb] py-24 md:py-40">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-8 leading-tight">
               Who This Is For
             </h2>
-            <p className="text-xl text-slate-600 mb-4">
+            <p className="text-xl text-[#4b5563] mb-4 leading-relaxed">
               Sentinel Alpha is built exclusively for:
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 text-center">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Global Macro Hedge Funds</h3>
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] text-center card-shadow">
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Global Macro Hedge Funds</h3>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 text-center">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Multi-Strategy Platforms</h3>
+            <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] text-center card-shadow">
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Multi-Strategy Platforms</h3>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 text-center">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Institutional Capital Allocators</h3>
+            <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] text-center card-shadow">
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Institutional Capital Allocators</h3>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 text-center">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Systemic Risk Strategy Teams</h3>
+            <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] text-center card-shadow">
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Systemic Risk Strategy Teams</h3>
             </div>
           </div>
-          <p className="text-center text-slate-600 italic">
+          <p className="text-center text-[#4b5563] italic leading-relaxed">
             We intentionally limit client count to preserve signal integrity and data advantage.
           </p>
         </div>
       </section>
 
       {/* WHAT SUCCESS LOOKS LIKE SECTION */}
-      <section className="max-w-5xl mx-auto px-6 py-20 md:py-32">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">
+      <section className="max-w-5xl mx-auto px-6 py-24 md:py-40">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-8 leading-tight">
             What Success Looks Like
           </h2>
-          <p className="text-xl text-slate-600 mb-12">
+          <p className="text-xl text-[#4b5563] mb-12 leading-relaxed">
             Our clients use Sentinel Alpha to:
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
-            <p className="font-semibold text-slate-900">Hedge before volatility reprices</p>
+          <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
+            <p className="font-semibold text-[#0a0a0a]">Hedge before volatility reprices</p>
           </div>
-          <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
-            <p className="font-semibold text-slate-900">Preserve liquidity access during stress</p>
+          <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
+            <p className="font-semibold text-[#0a0a0a]">Preserve liquidity access during stress</p>
           </div>
-          <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
-            <p className="font-semibold text-slate-900">Avoid correlation shock drawdowns</p>
+          <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
+            <p className="font-semibold text-[#0a0a0a]">Avoid correlation shock drawdowns</p>
           </div>
-          <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
-            <p className="font-semibold text-slate-900">Deploy capital into dislocations rather than react to them</p>
+          <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
+            <p className="font-semibold text-[#0a0a0a]">Deploy capital into dislocations rather than react to them</p>
           </div>
-          <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 md:col-span-2">
-            <p className="font-semibold text-slate-900 text-center">Maintain LP confidence through crisis cycles</p>
+          <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] md:col-span-2 card-shadow">
+            <p className="font-semibold text-[#0a0a0a] text-center">Maintain LP confidence through crisis cycles</p>
           </div>
         </div>
       </section>
 
       {/* DIFFERENT BY DESIGN SECTION */}
-      <section className="bg-slate-50 py-20 md:py-32">
+      <section className="bg-[#f9fafb] py-24 md:py-40">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-12">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-12 leading-tight">
               Different By Design
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">Sentinel Alpha is not:</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-6">Sentinel Alpha is not:</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <span className="text-2xl text-red-500 font-bold">✕</span>
-                  <p className="text-lg text-slate-700">A data terminal</p>
+                  <span className="text-2xl text-[#dc2626] font-bold">✕</span>
+                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A data terminal</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-2xl text-red-500 font-bold">✕</span>
-                  <p className="text-lg text-slate-700">A research vendor</p>
+                  <span className="text-2xl text-[#dc2626] font-bold">✕</span>
+                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A research vendor</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-2xl text-red-500 font-bold">✕</span>
-                  <p className="text-lg text-slate-700">An alternative data aggregator</p>
+                  <span className="text-2xl text-[#dc2626] font-bold">✕</span>
+                  <p className="text-lg text-[#1a1a1a] leading-relaxed">An alternative data aggregator</p>
                 </div>
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">Sentinel Alpha is:</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-6">Sentinel Alpha is:</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <span className="text-2xl text-emerald-500 font-bold">✓</span>
-                  <p className="text-lg text-slate-700">A systemic fragility early-warning intelligence layer</p>
+                  <span className="text-2xl text-[#10b981] font-bold">✓</span>
+                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A systemic fragility early-warning intelligence layer</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-2xl text-emerald-500 font-bold">✓</span>
-                  <p className="text-lg text-slate-700">A closed, high-trust signal network</p>
+                  <span className="text-2xl text-[#10b981] font-bold">✓</span>
+                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A closed, high-trust signal network</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-2xl text-emerald-500 font-bold">✓</span>
-                  <p className="text-lg text-slate-700">A decision clarity system for high-stakes environments</p>
+                  <span className="text-2xl text-[#10b981] font-bold">✓</span>
+                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A decision clarity system for high-stakes environments</p>
                 </div>
               </div>
             </div>
@@ -328,28 +368,28 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
       </section>
 
       {/* ACCESS MODEL SECTION */}
-      <section className="max-w-5xl mx-auto px-6 py-20 md:py-32">
+      <section className="max-w-5xl mx-auto px-6 py-24 md:py-40">
         <div className="text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-8 leading-tight">
             Access Model
           </h2>
-          <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-[#4b5563] mb-8 max-w-3xl mx-auto leading-relaxed">
             Sentinel Alpha operates on a limited-partnership model.
           </p>
-          <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 max-w-3xl mx-auto">
-            <p className="text-lg font-semibold text-slate-900 mb-6">We prioritise:</p>
+          <div className="bg-[#f9fafb] p-10 rounded-ui-xl border border-[#e5e7eb] max-w-3xl mx-auto card-shadow">
+            <p className="text-lg font-semibold text-[#0a0a0a] mb-6">We prioritise:</p>
             <ul className="space-y-3 text-left max-w-xl mx-auto">
               <li className="flex items-start gap-3">
-                <span className="text-emerald-500 font-bold">•</span>
-                <span className="text-slate-700">Long-term signal integrity</span>
+                <span className="text-[#10b981] font-bold">•</span>
+                <span className="text-[#1a1a1a] leading-relaxed">Long-term signal integrity</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-emerald-500 font-bold">•</span>
-                <span className="text-slate-700">Deep institutional partnerships</span>
+                <span className="text-[#10b981] font-bold">•</span>
+                <span className="text-[#1a1a1a] leading-relaxed">Deep institutional partnerships</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-emerald-500 font-bold">•</span>
-                <span className="text-slate-700">Shared intelligence advantage across a closed client network</span>
+                <span className="text-[#10b981] font-bold">•</span>
+                <span className="text-[#1a1a1a] leading-relaxed">Shared intelligence advantage across a closed client network</span>
               </li>
             </ul>
           </div>
@@ -357,19 +397,20 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
       </section>
 
       {/* FINAL SECTION — CLOSING */}
-      <section className="bg-slate-900 text-white py-20 md:py-32">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+      <section className="gradient-signature text-white py-24 md:py-40 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#0a0a0a]/90"></div>
+        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
             The Next Phase of Market Intelligence Is Not More Data
           </h2>
-          <p className="text-3xl md:text-4xl font-bold mb-12">
+          <p className="text-3xl md:text-4xl font-bold mb-16 leading-tight">
             It Is Earlier Understanding.
           </p>
-          <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 max-w-2xl mx-auto mb-12">
-            <button className="w-full px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors text-lg">
+          <div className="bg-white/10 backdrop-blur-sm p-10 rounded-ui-xl border border-white/20 max-w-2xl mx-auto">
+            <button className="w-full px-8 py-4 bg-white text-[#0a0a0a] font-semibold rounded-ui hover:bg-[#f9fafb] motion-subtle text-lg">
               Request Private Access
             </button>
-            <p className="text-sm text-slate-300 mt-4">
+            <p className="text-sm text-white/80 mt-5 leading-relaxed">
               For institutions operating where systemic timing matters.
             </p>
           </div>
@@ -377,12 +418,12 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-50 border-t border-slate-200 py-12">
+      <footer className="bg-[#f9fafb] border-t border-[#e5e7eb] py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-sm text-slate-600 font-medium mb-2">
+          <p className="text-sm text-[#4b5563] font-medium mb-2">
             Sentinel Alpha
           </p>
-          <p className="text-xs text-slate-500 uppercase tracking-widest">
+          <p className="text-xs text-[#6b7280] uppercase tracking-widest">
             Exclusively for Elite Institutional Capital
           </p>
         </div>
