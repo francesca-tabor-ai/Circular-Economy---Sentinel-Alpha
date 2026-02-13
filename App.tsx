@@ -49,8 +49,8 @@ const App: React.FC = () => {
       setLoading(true);
       setApiKeyError(false);
       try {
-        const res = await getSystemicInsights(marketContext);
-        setInsights(res);
+      const res = await getSystemicInsights(marketContext);
+      setInsights(res);
       } catch (error: any) {
         if (error.message === 'GOOGLE_API_KEY_REQUIRED') {
           setApiKeyError(true);
@@ -60,7 +60,7 @@ const App: React.FC = () => {
           setInsights([]);
         }
       } finally {
-        setLoading(false);
+      setLoading(false);
       }
     };
     fetchData();
@@ -196,7 +196,7 @@ const App: React.FC = () => {
             <div className="border-b border-[#f3f4f6] px-8 py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
                 <h2 className="text-xl font-bold text-[#0a0a0a] tracking-tight mb-2">Intelligence Briefing</h2>
-                <p className="text-sm text-[#6b7280] leading-relaxed">Proprietary systemic signal synthesis for global macro allocation.</p>
+                <p className="text-sm text-[#6b7280] leading-relaxed">Proprietary circular economy signal synthesis for resource allocation.</p>
               </div>
               {loading && (
                 <div className="flex items-center gap-2 text-[#3b82f6] text-xs font-bold mono uppercase tracking-widest">
@@ -226,33 +226,33 @@ const App: React.FC = () => {
                 </div>
               ) : (
                 <>
-                  {insights.map((insight, idx) => (
+              {insights.map((insight, idx) => (
                     <div 
                       key={idx} 
                       className="space-y-4 group cursor-default hover:transform hover:scale-[1.02] transition-all duration-300"
                       style={{ animationDelay: `${idx * 100}ms` }}
                     >
-                      <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2">
                         <span className="w-6 h-6 rounded-ui bg-[#eff6ff] text-[#3b82f6] flex items-center justify-center text-[10px] font-bold mono group-hover:bg-[#3b82f6] group-hover:text-white transition-colors duration-300">
-                          0{idx + 1}
-                        </span>
+                      0{idx + 1}
+                    </span>
                         <div className="h-px flex-1 bg-[#f3f4f6] group-hover:bg-[#e5e7eb] transition-colors duration-300" />
                         <span className="text-[10px] font-bold text-[#9ca3af] uppercase tracking-widest group-hover:text-[#6b7280] transition-colors duration-300">
-                          {(insight.confidence * 100).toFixed(0)}% Confidence
-                        </span>
-                      </div>
+                      {(insight.confidence * 100).toFixed(0)}% Confidence
+                    </span>
+                  </div>
                       <h4 className="text-base font-bold text-[#0a0a0a] leading-snug group-hover:text-[#3b82f6] transition-colors duration-300">
-                        {insight.title}
-                      </h4>
+                    {insight.title}
+                  </h4>
                       <p className="text-sm text-[#4b5563] leading-relaxed font-normal">
-                        {insight.content}
-                      </p>
-                    </div>
-                  ))}
+                    {insight.content}
+                  </p>
+                </div>
+              ))}
                   {!loading && insights.length === 0 && !apiKeyError && (
                     <div className="col-span-3 py-12 text-center text-[#9ca3af] text-sm font-medium">
-                      Scanning global venues for stress anomalies...
-                    </div>
+                      Scanning circular economy systems for transition signals...
+                </div>
                   )}
                 </>
               )}
@@ -293,7 +293,7 @@ const App: React.FC = () => {
           <div className="flex items-center gap-4">
             <span className="text-[10px] font-bold text-[#9ca3af] tracking-[0.2em] uppercase">Sentinel Alpha</span>
             <div className="h-4 w-px bg-[#e5e7eb]" />
-            <span className="text-[10px] font-medium text-[#6b7280] uppercase tracking-widest">Exclusively for Elite Institutional Capital</span>
+            <span className="text-[10px] font-medium text-[#6b7280] uppercase tracking-widest">Exclusively for Circular Economy Organizations</span>
           </div>
           <div className="flex gap-8 text-[11px] font-bold text-[#6b7280] uppercase tracking-widest">
             <a href="#" className="hover:text-[#0a0a0a] motion-subtle">Privacy Protocol</a>

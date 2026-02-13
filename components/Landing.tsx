@@ -57,13 +57,13 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
         {/* Content */}
         <div className={`relative z-10 max-w-5xl mx-auto px-6 py-24 md:py-40 transform transition-all duration-700 ${imageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1] hover:scale-105 transition-transform duration-300">
-            See Systemic Risk Before Markets Price It
+            See Circular Economy Risk Before It Becomes Obvious
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-6 max-w-3xl mx-auto leading-relaxed font-normal">
-            Sentinel Alpha delivers proprietary early-warning intelligence for systemic financial stress — interpreted through the civilisation-systems thinking of founder Professor Amina Solberg.
+            Sentinel Alpha delivers proprietary early-warning intelligence for circular economy transitions — interpreted through the civilisation-systems thinking of founder Professor Amina Solberg.
           </p>
           <p className="text-lg text-white/80 mb-16 max-w-2xl mx-auto leading-relaxed">
-            Built for the institutions that cannot afford to be late to structural change.
+            Built for organizations committed to the circular economy transition.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button className="px-8 py-4 bg-white text-[#0a0a0a] font-semibold rounded-ui hover:bg-[#f9fafb] motion-subtle hover:scale-105 active:scale-95 transition-all duration-200 hover:shadow-lg relative overflow-hidden group">
@@ -81,7 +81,7 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
       <section className="bg-[#f9fafb] border-y border-[#e5e7eb] py-10">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p className="text-sm text-[#4b5563] font-medium leading-relaxed">
-            Trusted by leaders across capital markets, global systems research, and strategic risk intelligence.
+            Trusted by leaders across circular economy organizations, sustainability systems research, and strategic resource intelligence.
           </p>
           <p className="text-xs text-[#6b7280] mt-3 font-semibold uppercase tracking-widest">
             Private. Limited. Invitation-first.
@@ -93,20 +93,20 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
       <section className="max-w-5xl mx-auto px-6 py-24 md:py-40">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-6 leading-tight">
-            Markets Do Not Fail Suddenly
+            Circular Systems Do Not Fail Suddenly
           </h2>
           <h3 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-8 leading-tight">
             They Fail Gradually — Then All At Once.
           </h3>
           <p className="text-xl text-[#4b5563] mb-8 max-w-3xl mx-auto leading-relaxed">
-            By the time volatility spikes, spreads widen, and liquidity disappears, the system has already changed.
+            By the time resource constraints tighten, supply chains break, and value circulation stops, the circular system has already changed.
           </p>
           <div className="inline-block px-8 py-5 bg-[#f3f4f6] rounded-ui-lg">
             <p className="text-lg font-semibold text-[#0a0a0a]">
-              Most market tools measure outcomes.
+              Most circular economy tools measure outcomes.
             </p>
             <p className="text-lg font-semibold text-[#0a0a0a] mt-2">
-              Sentinel Alpha measures structural fragility formation.
+              Sentinel Alpha measures circular system fragility formation.
             </p>
           </div>
         </div>
@@ -117,24 +117,24 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-8 leading-tight">
-              Early Detection of Systemic Fragility
+              Early Detection of Circular System Fragility
             </h2>
             <p className="text-xl text-[#4b5563] mb-12 max-w-3xl mx-auto leading-relaxed">
-              Sentinel Alpha continuously analyses structural stress signals across:
+              Sentinel Alpha continuously analyses structural signals across circular economy systems:
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-6 mb-16">
             <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow">
-              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Market microstructure</h3>
+              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Resource flow networks</h3>
             </div>
             <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow">
-              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Funding and liquidity networks</h3>
+              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Material cycle integrity</h3>
             </div>
             <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow">
-              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Counterparty system stability</h3>
+              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Value circulation stability</h3>
             </div>
             <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow">
-              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Real-economy and infrastructure dependency stress</h3>
+              <h3 className="text-xl font-bold text-[#0a0a0a] mb-4">Circular infrastructure dependencies</h3>
             </div>
           </div>
           <div className="text-center">
@@ -143,7 +143,7 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
             </p>
             <p className="text-lg text-[#4b5563] leading-relaxed">
               Not more data.<br />
-              Earlier understanding.
+              Earlier understanding of circular economy transitions.
             </p>
           </div>
         </div>
@@ -158,27 +158,27 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
         </div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-[#f9fafb] p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow hover:border-[#3b82f6] hover:transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#3b82f6] transition-colors duration-300">Systemic Fragility Early Warning</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#3b82f6] transition-colors duration-300">Circular System Fragility Early Warning</h3>
               <p className="text-[#4b5563] leading-relaxed">
-                Probability-weighted detection of systemic instability formation.
+                Probability-weighted detection of circular economy system instability formation.
               </p>
             </div>
             <div className="bg-[#f9fafb] p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow hover:border-[#10b981] hover:transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#10b981] transition-colors duration-300">Hidden Correlation Drift Detection</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#10b981] transition-colors duration-300">Resource Flow Drift Detection</h3>
               <p className="text-[#4b5563] leading-relaxed">
-                Identify where diversification is quietly breaking.
+                Identify where circular value networks are quietly breaking.
               </p>
             </div>
             <div className="bg-[#f9fafb] p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow hover:border-[#06b6d4] hover:transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#06b6d4] transition-colors duration-300">Liquidity Collapse Radar</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#06b6d4] transition-colors duration-300">Material Cycle Collapse Radar</h3>
               <p className="text-[#4b5563] leading-relaxed">
-                See market depth fragility before exit doors narrow.
+                See circular infrastructure fragility before resource flows stop.
               </p>
             </div>
             <div className="bg-[#f9fafb] p-8 rounded-ui-xl border border-[#e5e7eb] card-shadow hover:border-[#6366f1] hover:transform hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#6366f1] transition-colors duration-300">Event Cascade Simulation</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4 group-hover:text-[#6366f1] transition-colors duration-300">Circular Economy Cascade Simulation</h3>
               <p className="text-[#4b5563] leading-relaxed">
-                Understand what breaks next — and how fast.
+                Understand what breaks next in circular systems — and how fast.
               </p>
             </div>
           </div>
@@ -273,20 +273,20 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
           </div>
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] text-center card-shadow">
-              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Global Macro Hedge Funds</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Circular Economy Organizations</h3>
             </div>
             <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] text-center card-shadow">
-              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Multi-Strategy Platforms</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Sustainability Leaders</h3>
             </div>
             <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] text-center card-shadow">
-              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Institutional Capital Allocators</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Resource System Managers</h3>
             </div>
             <div className="bg-white p-8 rounded-ui-xl border border-[#e5e7eb] text-center card-shadow">
-              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Systemic Risk Strategy Teams</h3>
+              <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">Circular Transition Teams</h3>
             </div>
           </div>
           <p className="text-center text-[#4b5563] italic leading-relaxed">
-            We intentionally limit client count to preserve signal integrity and data advantage.
+            We intentionally limit client count to preserve signal integrity and circular economy intelligence advantage.
           </p>
         </div>
       </section>
@@ -303,19 +303,19 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
         </div>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
-            <p className="font-semibold text-[#0a0a0a]">Hedge before volatility reprices</p>
+            <p className="font-semibold text-[#0a0a0a]">Adapt before resource constraints tighten</p>
           </div>
           <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
-            <p className="font-semibold text-[#0a0a0a]">Preserve liquidity access during stress</p>
+            <p className="font-semibold text-[#0a0a0a]">Preserve value circulation during transitions</p>
           </div>
           <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
-            <p className="font-semibold text-[#0a0a0a]">Avoid correlation shock drawdowns</p>
+            <p className="font-semibold text-[#0a0a0a]">Avoid circular system breakdowns</p>
           </div>
           <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] card-shadow">
-            <p className="font-semibold text-[#0a0a0a]">Deploy capital into dislocations rather than react to them</p>
+            <p className="font-semibold text-[#0a0a0a]">Deploy resources into circular opportunities rather than react to disruptions</p>
           </div>
           <div className="bg-[#f9fafb] p-6 rounded-ui-lg border border-[#e5e7eb] md:col-span-2 card-shadow">
-            <p className="font-semibold text-[#0a0a0a] text-center">Maintain LP confidence through crisis cycles</p>
+            <p className="font-semibold text-[#0a0a0a] text-center">Maintain stakeholder confidence through circular economy transitions</p>
           </div>
         </div>
       </section>
@@ -351,15 +351,15 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <span className="text-2xl text-[#10b981] font-bold">✓</span>
-                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A systemic fragility early-warning intelligence layer</p>
+                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A circular economy fragility early-warning intelligence layer</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="text-2xl text-[#10b981] font-bold">✓</span>
-                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A closed, high-trust signal network</p>
+                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A closed, high-trust circular economy signal network</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="text-2xl text-[#10b981] font-bold">✓</span>
-                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A decision clarity system for high-stakes environments</p>
+                  <p className="text-lg text-[#1a1a1a] leading-relaxed">A decision clarity system for circular economy transitions</p>
                 </div>
               </div>
             </div>
@@ -381,15 +381,15 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
             <ul className="space-y-3 text-left max-w-xl mx-auto">
               <li className="flex items-start gap-3">
                 <span className="text-[#10b981] font-bold">•</span>
-                <span className="text-[#1a1a1a] leading-relaxed">Long-term signal integrity</span>
+                <span className="text-[#1a1a1a] leading-relaxed">Long-term circular economy signal integrity</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#10b981] font-bold">•</span>
-                <span className="text-[#1a1a1a] leading-relaxed">Deep institutional partnerships</span>
+                <span className="text-[#1a1a1a] leading-relaxed">Deep circular economy partnerships</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#10b981] font-bold">•</span>
-                <span className="text-[#1a1a1a] leading-relaxed">Shared intelligence advantage across a closed client network</span>
+                <span className="text-[#1a1a1a] leading-relaxed">Shared circular economy intelligence advantage across a closed client network</span>
               </li>
             </ul>
           </div>
@@ -401,17 +401,17 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
         <div className="absolute inset-0 bg-[#0a0a0a]/90"></div>
         <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-            The Next Phase of Market Intelligence Is Not More Data
+            The Next Phase of Circular Economy Intelligence Is Not More Data
           </h2>
           <p className="text-3xl md:text-4xl font-bold mb-16 leading-tight">
-            It Is Earlier Understanding.
+            It Is Earlier Understanding of Circular Transitions.
           </p>
           <div className="bg-white/10 backdrop-blur-sm p-10 rounded-ui-xl border border-white/20 max-w-2xl mx-auto">
             <button className="w-full px-8 py-4 bg-white text-[#0a0a0a] font-semibold rounded-ui hover:bg-[#f9fafb] motion-subtle text-lg">
               Request Private Access
             </button>
             <p className="text-sm text-white/80 mt-5 leading-relaxed">
-              For institutions operating where systemic timing matters.
+              For organizations operating where circular economy timing matters.
             </p>
           </div>
         </div>
@@ -424,7 +424,7 @@ const Landing: React.FC<LandingProps> = ({ onNavigateToDashboard }) => {
             Sentinel Alpha
           </p>
           <p className="text-xs text-[#6b7280] uppercase tracking-widest">
-            Exclusively for Elite Institutional Capital
+            Exclusively for Circular Economy Organizations
           </p>
         </div>
       </footer>

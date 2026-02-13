@@ -4,17 +4,17 @@
 
 # Sentinel Alpha
 
-Sentinel Alpha exists for one reason: To help elite capital allocators see systemic risk forming before markets price it in.
+Sentinel Alpha exists for one reason: To help organizations see circular economy risks and opportunities forming before they become obvious.
 
-In modern markets, information is abundant — but true early warning is rare. Most signals only become visible once volatility rises, liquidity disappears, and correlation shocks are already underway. By that point, protection is expensive, exits are crowded, and losses are locked in.
+In the transition to a circular economy, information is abundant — but true early warning is rare. Most signals only become visible once resource constraints tighten, supply chains break, and circular models are already being disrupted. By that point, adaptation is expensive, transitions are rushed, and value is lost.
 
 We built Sentinel Alpha to change that timing.
 
 ## What We Do
 
-Sentinel Alpha delivers proprietary systemic risk intelligence to a small group of global hedge funds and institutional capital allocators.
+Sentinel Alpha delivers proprietary circular economy intelligence to organizations committed to the transition.
 
-Our technology continuously analyses structural stress signals across financial markets, funding systems, and critical infrastructure dependencies — translating complex multi-domain data into clear, actionable early-warning intelligence.
+Our technology continuously analyses structural signals across resource flows, material cycles, value circulation networks, and circular infrastructure dependencies — translating complex multi-domain data into clear, actionable early-warning intelligence for circular economy transitions.
 
 - ✕ Not a data terminal.
 - ✕ Not a research shop.
@@ -22,24 +22,24 @@ Our technology continuously analyses structural stress signals across financial 
 
 ## Why We Exist
 
-The greatest financial losses rarely come from being wrong about direction. They come from being exposed when the system itself becomes unstable.
+The greatest losses in circular economy transitions rarely come from being wrong about direction. They come from being exposed when resource systems themselves become unstable.
 
-History shows that systemic events build quietly, accelerate suddenly, and become obvious only after repricing begins.
+History shows that circular economy disruptions build quietly, accelerate suddenly, and become obvious only after value circulation breaks down.
 
-**"Our mission is to move detection earlier — when action is still cheap and liquidity still exists."**
+**"Our mission is to move detection earlier — when circular transitions are still possible and resource flows still exist."**
 
 ## Who We Serve
 
-- **Global Macro Funds**  
-  Operating in high-leverage environments.
+- **Circular Economy Organizations**  
+  Committed to resource circulation and value preservation.
 
-- **Multi-Strategy Pods**  
-  Across diverse portfolio mandates.
+- **Sustainability Leaders**  
+  Transitioning to circular business models.
 
-- **Institutional Allocators**  
-  With significant systemic exposure.
+- **Resource System Managers**  
+  With significant circular economy exposure.
 
-*We intentionally maintain a limited client base to preserve signal integrity and information asymmetry.*
+*We intentionally maintain a limited client base to preserve signal integrity and information advantage in circular economy intelligence.*
 
 ## Our Philosophy
 
@@ -57,14 +57,14 @@ History shows that systemic events build quietly, accelerate suddenly, and becom
 
 ## Our Approach
 
-- Cross-asset structural stress monitoring
-- Liquidity and funding fragility detection
-- Correlation regime shift analysis
-- Event cascade modelling across financial systems
+- Resource flow and material cycle monitoring
+- Circular value network fragility detection
+- Circular economy transition shift analysis
+- Event cascade modelling across resource systems
 
 ## Long-Term Vision
 
-To become the trusted early-warning intelligence layer that the world's most sophisticated capital checks before sizing systemic risk.
+To become the trusted early-warning intelligence layer that the world's most sophisticated circular economy organizations check before sizing circular economy risk and opportunity.
 
 ---
 
